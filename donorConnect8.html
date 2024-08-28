@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanzania DonorConnect</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f7;
+            color: #333;
+        }
+
+        /* Header Section */
+        header {
+            background-color: #2196f3;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: center;
+            padding: 15px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 15px;
+            margin: 0 10px;
+        }
+
+        nav a:hover {
+            background-color: #444;
+            border-radius: 5px;
+        }
+
+        /* Main Section */
+        main {
+            padding: 30px;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section h2 {
+            margin-bottom: 20px;
+            font-size: 2em;
+            color: #2196f3;
+        }
+
+        .section p {
+            font-size: 1.1em;
+            line-height: 1.6em;
+        }
+
+        /* Project Cards */
+        .project-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-card-content {
+            padding: 20px;
+        }
+
+        .project-card h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .project-card p {
+            font-size: 1em;
+            color: #666;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #2196f3;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #1e88e5;
+        }
+
+        /* Donation Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 8px;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer p {
+            font-size: 0.9em;
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .project-cards {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 20px;
+                justify-content: space-between;
+            }
+
+            .project-card {
+                flex: 0 0 48%;
+            }
+        }
+
+        @media (min-width: 992px) {
+            .project-card {
+                flex: 0 0 31%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Welcome to Tanzania DonorConnect</h1>
+        <p>Connecting Donors with Impactful Projects Across Tanzania</p>
+    </header>
+
+    <nav>
+        <a href="#projects">Projects</a>
+        <a href="#technology-grants">Technology Grants</a>
+        <a href="#donor-engagement">Donor Engagement</a>
+        <a href="#about">About Us</a>
+        <a href="#contact">Contact</a>
+        <a href="#signup">Sign Up</a>
+        <a href="#signin">Sign In</a>
+        <a href="#fundraising-tips">Fundraising Tips</a>
+        <a href="#fundraising-guidelines">Guidelines</a>
+        <a href="#fundraising-categories">Categories</a>
+    </nav>
+
+    <main>
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2>Our Fundraising Projects</h2>
+            <div class="project-cards">
+                <!-- Example Project Cards -->
+                <div class="project-card">
+                    <img src="project1.jpg" alt="Project Image">
+                    <div class="project-card-content">
+                        <h3>Water Sanitation Project</h3>
+                        <p>Providing clean and safe water to rural communities in Tanzania.</p>
+                        <button class="btn" onclick="openModal()">Donate</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="project2.jpg" alt="Project Image">
+                    <div class="project-card-content">
+                        <h3>Education for All</h3>
+                        <p>Supporting education initiatives for underprivileged children.</p>
+                        <button class="btn" onclick="openModal()">Donate</button>
+                    </div>
+                </div>
+
+                <!-- Additional project cards for specific organizations -->
+                <div class="project-card">
+                    <img src="dunia_salama.jpg" alt="Dunia Salama Foundation">
+                    <div class="project-card-content">
+                        <h3>Dunia Salama Foundation - Health Outreach</h3>
+                        <p>Providing medical assistance and health education to underserved communities.</p>
+                        <button class="btn" onclick="openModal()">Donate</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="ksm.jpg" alt="KSM Project">
+                    <div class="project-card-content">
+                        <h3>KSM - Youth Empowerment</h3>
+                        <p>Empowering youth through vocational training and mentorship programs.</p>
+                        <button class="btn" onclick="openModal()">Donate</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="abagurusi.jpg" alt="Abagurusi Project">
+                    <div class="project-card-content">
+                        <h3>Abagurusi - Agricultural Development</h3>
+                        <p>Supporting small-scale farmers with resources and training for sustainable agriculture.</p>
+                        <button class="btn" onclick="openModal()">Donate</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="bosaseali.jpg" alt="BOSASELI Project">
+                    <div class="project-card-content">
+                        <h3>BOSASELI - Community Infrastructure</h3>
+                        <p>Improving community infrastructure, including roads and sanitation facilities.</p>
+                        <button class="btn" onclick="openModal()">Donate</button>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="bodaboda_project.jpg" alt="Bodaboda Project">
+                    <div class="project-card-content">
+                        <h3>Bodaboda Project</h3>
+                        <p>Providing motorcycles to local entrepreneurs for improved transportation and business opportunities.</p>
+                        <button class="btn" onclick="openModal()">Donate</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technology Grants Section -->
+        <section id="technology-grants" class="section">
+            <h2>Technology Grants</h2>
+            <p>Explore available technology grants and resources to support your organization's needs.</p>
+        </section>
+
+        <!-- Donor Engagement Section -->
+        <section id="donor-engagement" class="section">
+            <h2>Donor Engagement</h2>
+            <p>Engage with donors through various channels and updates to maintain strong relationships.</p>
+            <a href="#" class="btn">Connect with Donor</a>
+        </section>
+
+        <!-- About Us Section -->
+        <section id="about" class="section">
+            <h2>About Us</h2>
+            <p>We are dedicated to connecting donors with impactful projects across Tanzania, providing a platform for transparent and efficient fundraising. Our mission is to support and enhance the lives of individuals and communities through strategic funding and partnership.</p>
+        </section>
+
+        <!-- Signup Section -->
+        <section id="signup" class="section">
+            <h2>Sign Up</h2>
+            <form>
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email Address</label>
+                    <input type="email" id="signup-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-confirm-password">Confirm Password</label>
+                    <input type="password" id="signup-confirm-password" name="confirm_password" required>
+                </div>
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+        </section>
+
+        <!-- Sign-In Section -->
+        <section id="signin" class="section">
+            <h2>Sign In</h2>
+            <form>
+                <div class="form-group">
+                    <label for="signin-email">Email Address</label>
+                    <input type="email" id="signin-email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signin-password">Password</label>
+                    <input type="password" id="signin-password" name="password" required>
+                </div>
+                <button type="submit" class="btn">Sign In</button>
+            </form>
+        </section>
+
+        <!-- Legal and Policy Sections -->
+        <section id="legal" class="section">
+            <h2>Legal & Policy</h2>
+            <ul>
+                <li><a href="#terms">Terms of Service</a></li>
+                <li><a href="#privacy-notice">Privacy Notice</a></li>
+                <li><a href="#legal">Legal</a></li>
+                <li><a href="#accessibility">Accessibility Statement</a></li>
+                <li><a href="#cookie-policy">Cookie Policy</a></li>
+                <li><a href="#privacy-choices">Your Privacy Choices</a></li>
+            </ul>
+        </section>
+
+        <!-- Additional Sections -->
+        <section id="terms" class="section">
+            <h2>Terms of Service</h2>
+            <p>Details about the terms of service go here.</p>
+        </section>
+
+        <section id="privacy-notice" class="section">
+            <h2>Privacy Notice</h2>
+            <p>Information about privacy practices and policies go here.</p>
+        </section>
+
+        <section id="legal" class="section">
+            <h2>Legal</h2>
+            <p>Legal information and disclaimers go here.</p>
+        </section>
+
+        <section id="accessibility" class="section">
+            <h2>Accessibility Statement</h2>
+            <p>Accessibility information goes here.</p>
+        </section>
+
+        <section id="cookie-policy" class="section">
+            <h2>Cookie Policy</h2>
+            <p>Details about the cookie policy go here.</p>
+        </section>
+
+        <section id="privacy-choices" class="section">
+            <h2>Your Privacy Choices</h2>
+            <p>Information about privacy choices and controls go here.</p>
+        </section>
+
+        <!-- Fundraising Tips Section -->
+        <section id="fundraising-tips" class="section">
+            <h2>Fundraising Tips</h2>
+            <p>Effective tips to help you maximize your fundraising efforts.</p>
+            <ul>
+                <li>Clearly define your fundraising goals and target audience.</li>
+                <li>Use compelling storytelling to engage potential donors.</li>
+                <li>Leverage social media and other digital platforms for outreach.</li>
+                <li>Organize events or campaigns to create excitement and involvement.</li>
+                <li>Utilize data and feedback to improve your fundraising strategies.</li>
+            </ul>
+        </section>
+
+        <!-- Fundraising Guidelines Section -->
+        <section id="fundraising-guidelines" class="section">
+            <h2>Fundraising Guidelines</h2>
+            <p>Guidelines to ensure effective and ethical fundraising practices.</p>
+            <ul>
+                <li>Be transparent about how funds will be used and report on progress.</li>
+                <li>Respect donor privacy and preferences in communication.</li>
+                <li>Maintain accurate records of all donations and expenses.</li>
+                <li>Engage with donors in a respectful and appreciative manner.</li>
+            </ul>
+        </section>
+
+        <!-- Fundraising Categories Section -->
+        <section id="fundraising-categories" class="section">
+            <h2>Fundraising Categories</h2>
+            <p>Explore the various categories of fundraising projects you can support:</p>
+            <ul>
+                <li><strong>Education:</strong> Supporting schools, scholarships, and learning resources.</li>
+                <li><strong>Healthcare:</strong> Funding medical treatments, health awareness, and facilities.</li>
+                <li><strong>Environment:</strong> Initiatives for conservation, recycling, and sustainable practices.</li>
+                <li><strong>Economic Development:</strong> Empowering small businesses and vocational training programs.</li>
+                <li><strong>Community Development:</strong> Projects that enhance living conditions and social well-being.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Tanzania DonorConnect. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Donation Modal -->
+    <div id="donationModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h3>Select Your Donation Method</h3>
+            <label for="donation-method">Choose Payment Method:</label>
+            <select id="donation-method">
+                <option value="bank_transfer">Bank Transfer</option>
+                <option value="mpesa">M-Pesa</option>
+                <option value="tigo_pesa">Tigo Pesa</option>
+                <option value="halopesa">HaloPesa</option>
+                <option value="airtel_money">Airtel Money</option>
+                <option value="paypal">PayPal</option>
+                <option value="credit_card">Credit Card</option>
+            </select>
+
+            <label for="currency">Select Currency:</label>
+            <select id="currency">
+                <option value="tzs">TZS</option>
+                <option value="usd">USD</option>
+                <option value="eur">EUR</option>
+                <option value="gbp">GBP</option>
+            </select>
+
+            <label for="amount">Enter Donation Amount:</label>
+            <input type="number" id="amount" placeholder="Amount" min="1" step="any">
+
+            <button class="btn">Proceed to Donate</button>
+        </div>
+    </div>
+
+    <script>
+        // Function to open the modal
+        function openModal() {
+            document.getElementById("donationModal").style.display = "block";
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById("donationModal").style.display = "none";
+        }
+    </script>
+</body>
+
+</html>
